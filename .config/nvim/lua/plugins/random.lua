@@ -7,7 +7,4 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  {
-    "christoomey/vim-tmux-navigator",
-  },
 }
