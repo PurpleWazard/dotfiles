@@ -1,4 +1,5 @@
 return {
+  event = "BufEnter",
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	config = function()
