@@ -6,8 +6,8 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
-				--mode = "buffers",
-				mode = "tabs",
+				mode = "buffers",
+				--mode = "tabs",
 				offsets = {
 					{
 						filetype = "neo-tree",

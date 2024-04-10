@@ -11,7 +11,7 @@ return {
     vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find diagnostics" })
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find in Files" })
     vim.keymap.set("n", "<leader>fm", function()
-      builtin.man_pages({ sections = { "2", "3", "9", "3type", "2type" } })
+      builtin.man_pages({ sections = { "1", "2", "3", "9", "3type", "2type" } })
     end, { desc = "Find man_pages" })
     vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
@@ -22,7 +22,8 @@ return {
         -- config_key = value,
         mappings = {
           n = {
-            ["<leader>q"] = actions.close,
+            ["qq"] = actions.close,
+            ["x"] = actions.close,
             ["<esc>"] = actions.close,
           },
           i = {
@@ -30,6 +31,8 @@ return {
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             ["<esc>"] = actions.close,
+            ["xx"] = actions.close,
+            ["qq"] = actions.close,
             ["<C-h>"] = "which_key",
           },
         },
