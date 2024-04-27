@@ -7,6 +7,6 @@ vim.opt.termguicolors = true
 vim.o.cmdheight = 1
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.cmd("set clipboard+=unnamedplus")
 vim.g.mapleader = " "
