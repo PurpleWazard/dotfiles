@@ -29,7 +29,6 @@ return {
 				"clangd",
 				"pylsp",
 				"cmake",
-				"mesonlsp",
 			},
 		})
 
@@ -58,6 +57,7 @@ return {
 		require("lspconfig").cmake.setup(capabilities)
 		require("lspconfig").pylsp.setup(capabilities)
 		require("lspconfig").clangd.setup(capabilities)
+		require("lspconfig").mesonlsp.setup(capabilities)
 
 		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,
