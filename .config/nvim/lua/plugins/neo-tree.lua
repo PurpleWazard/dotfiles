@@ -1,24 +1,30 @@
+-- Neo-tree is a Neovim plugin to browse the file system
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	lazy = false,
-	branch = "v3.x",
+	version = "*",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
-		"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
+	cmd = "Neotree",
 	keys = {
-		{ "<leader>ee", "<cmd>Neotree filesystem toggle left<CR>", desc = "filesystem open left" },
-		{ "<leader>ef", "<cmd>Neotree filesystem focus left<CR>", desc = "file system focas left" },
+		{ "\\", ":Neotree toggle<CR>", { desc = "NeoTree toggle" } },
 	},
-	config = function()
-		require("neo-tree").setup({
-			filesystem = {
-				filtered_items = {
-					visible = true,
-				},
+	opts = {
+
+		filesystem = {
+			--               -- the current file is changed while the tree is open.
+			-- in whatever position is specified in window.position
+			-- "open_current",  -- netrw disabled, opening a directory opens within the
+			-- window like netrw would, regardless of window.position
+			-- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+
+			window = {
+				mappings = {},
 			},
-		})
-	end,
+		},
+	},
 }
