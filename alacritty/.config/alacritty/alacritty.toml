@@ -8,8 +8,12 @@ TERM = "xterm-256color"
 size =  12
 
 [font.normal]
-family = "jetBrainsMonoNerdFont"
+#family = "jetBrainsMonoNerdFont"
+family = "HackNerdFont"
 style = "Regular"
+
+[window]
+dynamic_padding = true
 
 # Default colors
 [colors.primary]

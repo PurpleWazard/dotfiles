@@ -27,7 +27,7 @@ return { -- Autocompletion
 		"hrsh7th/cmp-cmdline",
 	},
 	config = function()
-		vim.opt.completeopt = { "menu", "menuone", "noselect" }
+		vim.opt.completeopt = { "menu", "preview" }
 
 		local cmp = require("cmp")
 
@@ -82,10 +82,10 @@ return { -- Autocompletion
 			}),
 			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "path" },
-				{ name = "buffer" },
-				{ name = "cmdline" },
+				-- { name = "luasnip" },
+				-- { name = "path" },
+				-- { name = "buffer" },
+				-- { name = "cmdline" },
 			},
 		})
 

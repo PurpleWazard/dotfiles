@@ -40,10 +40,10 @@ vim.opt.wrap = false
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.bo.softtabstop = 2
+vim.bo.softtabstop = 4
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -80,7 +80,7 @@ vim.keymap.set("n", "<leader>x", ":q<CR>", { desc = "[x]quit" })
 vim.keymap.set("n", "<C-n>", [[<Cmd>bnext<CR>]], { desc = "switch between buffers" })
 vim.keymap.set("n", "<C-p>", [[<Cmd>bprev<CR>]], { desc = "switch between buffers" })
 
-local set = vim.opt_local
+-- local set = vim.opt_local
 
 -- Set local settings for terminal buffers
 -- vim.api.nvim_create_autocmd("TermOpen", {
@@ -125,7 +125,10 @@ require("lazy").setup("plugins")
 
 -- Enable neovim to be the external editor for Godot, if the cwd has a project.godot file
 -- if vim.fn.getcwd() .. "/project.godot" then
-vim.keymap.set("n", "<leader>dg", function()
-	vim.fn.serverstart("/tmp/godot.pipe")
+vim.keymap.set("n", "<leader>dG", function()
+	if "tmp/godot.pipe" then
+		print("attaching to godot server")
+		vim.fn.serverstart("/tmp/godot.pipe")
+	end
 end)
--- end
+--

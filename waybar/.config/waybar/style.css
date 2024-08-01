@@ -62,7 +62,7 @@
 #waybar {
 	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
 	color: @white;
-	font-family: JetBrains Mono, Siji;
+	font-family: Hack Nerd Font;
 	font-size: 10pt;
 	/*font-weight: bold;*/
 }
@@ -83,8 +83,8 @@
 #disk,
 #user,
 #mpris {
-	padding-left: 8pt;
-	padding-right: 8pt;
+	padding-left: 0pt;
+	padding-right: 2pt;
 }
 
 /* Each critical module */
