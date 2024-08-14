@@ -25,10 +25,10 @@ exec_always --no-startup-id autotiling
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%; exec exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle; exec pkill -SIGRTMIN+10 i3blocks
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle; exec pkill -SIGRTMIN+10 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -182,6 +182,44 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+
+# i3bar
+# bar {
+#     font pango:Hack Nerd font 14
+#     position top
+#     status_command i3blocks
+#         colors {
+#         background #282828  # Set your desired background color here
+#         statusline #ebdbb2
+#         separator  #ebdbb2 # Optional: color for the separator
+#         }
+# }
+
+
+# i3bar
+bar {
+    position top
+    mode dock
+    tray_output primary
+    tray_padding 4
+    font pango:Hack Nerd Font 12
+    # separator_symbol ""
+    strip_workspace_numbers yes
+    status_command i3blocks
+    colors {
+      background #2e3440
+      statusline #d8dee9
+      separator #8FBCBB
+
+      focused_workspace  #2e3440 #2e3440 #81A1C1
+      active_workspace   #2e3440 #2e3440 #8FBCBB
+      inactive_workspace #2e3440 #2e3440 #4c566a
+      urgent_workspace   #2e3440 #2e3440 #BF616A
+      binding_mode       #2e3440 #2e3440 #BF616A
+    }
+}
+
+
 
 
 
