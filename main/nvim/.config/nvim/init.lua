@@ -3,7 +3,6 @@ vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = true
 
--- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
 vim.opt.number = true
@@ -40,84 +39,65 @@ vim.opt.wrap = false
 vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 4
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+-- makes the line you yank with "yy" flash
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
 
+-- Normal mode keymaps
+
+-- disables arrow keys for movement
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
+-- window nav with ctrl + (h,j,k,l)
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Insert mode smash esc" })
-vim.keymap.set("i", "kj", "<Esc>", { desc = "Insert mode smash esc" })
+-- easy save with leader + w
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "[WW]orkspace save buffer" })
 
-vim.keymap.set("n", "<leader>ww", ":w<CR>", { desc = "[WW]orkspace save buffer" })
-vim.keymap.set("n", "<leader>x", ":q<CR>", { desc = "[x]quit" })
-
+-- ctrl + n,p for moving between buffers on the current window
 vim.keymap.set("n", "<C-n>", [[<Cmd>bnext<CR>]], { desc = "switch between buffers" })
 vim.keymap.set("n", "<C-p>", [[<Cmd>bprev<CR>]], { desc = "switch between buffers" })
 
--- local set = vim.opt_local
+-- exec lua code in neovim
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
 
--- Set local settings for terminal buffers
--- vim.api.nvim_create_autocmd("TermOpen", {
--- 	group = vim.api.nvim_create_augroup("custom-term-open", {}),
--- 	callback = function()
--- 		set.number = false
--- 		set.relativenumber = false
--- 		set.scrolloff = 0
--- 	end,
--- })
 
--- Easily hit escape in terminal mode.
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-vim.keymap.set("t", "JK", "<c-\\><c-n>")
-vim.keymap.set("t", "KJ", "<c-\\><c-n>")
+-- Insert move keymaps
 
--- Open a terminal at the bottom of the screen with a fixed height.
-vim.keymap.set("n", "<leader>t", function()
-	vim.cmd.new()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, 12)
-	vim.wo.winfixheight = true
-	vim.cmd.term()
-end)
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Insert mode smash esc" })
 
 -- boot strap lazy nvim
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -125,10 +105,9 @@ require("lazy").setup("plugins")
 
 -- Enable neovim to be the external editor for Godot, if the cwd has a project.godot file
 -- if vim.fn.getcwd() .. "/project.godot" then
-vim.keymap.set("n", "<leader>dG", function()
-	if "tmp/godot.pipe" then
-		print("attaching to godot server")
-		vim.fn.serverstart("/tmp/godot.pipe")
-	end
-end)
---
+-- vim.keymap.set("n", "<leader>dG", function()
+--     if "tmp/godot.pipe" then
+--         print("attaching to godot server")
+--         vim.fn.serverstart("/tmp/godot.pipe")
+--     end
+-- end)
