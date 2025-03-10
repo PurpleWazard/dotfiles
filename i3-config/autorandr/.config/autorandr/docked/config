@@ -16,9 +16,11 @@ output eDP1
 off
 output DP2-1
 crtc 1
+filter bilinear
 mode 1920x1200
 pos 0x0
 rate 59.95
+transform 1.250000,0.000000,0.000000,0.000000,1.250000,0.000000,0.000000,0.000000,1.000000
 x-prop-audio auto
 x-prop-broadcast_rgb Automatic
 x-prop-max_bpc 12

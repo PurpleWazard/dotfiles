@@ -22,7 +22,6 @@ local win_config = {
     width = width,
     height = height,
   }
-
   local buf = nil
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
@@ -49,4 +48,26 @@ end,
   {}
 )
 
-vim.keymap.set("n", "<leader>t", "<cmd>Floaterminal<CR>")
+vim.keymap.set("n", "<leader>tf", "<cmd>Floaterminal<CR>")
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
+vim.keymap.set("t", "jk", "<c-\\><c-n>")
+
+vim.keymap.set("t", "<C-h>", "<c-\\><c-n><C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("t", "<C-l>", "<c-\\><c-n><C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("t", "<C-j>", "<c-\\><c-n><C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("t", "<C-k>", "<c-\\><c-n><C-w><C-k>", { desc = "Move focus to the upper window" })
+
+
+vim.keymap.set("n", "<c-d>", "<cmd>bd!<CR>")
+
+
+vim.keymap.set("n", "<leader>tt", function()
+  vim.cmd.vnew()
+  vim.cmd.wincmd("J")
+  vim.cmd.term()
+  vim.api.nvim_win_set_height(0, 15)
+end
+)
+
+
+
