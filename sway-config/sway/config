@@ -19,15 +19,16 @@ floating_modifier $mod
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier
+
+tiling_drag enable
 
 # start a terminal
 bindsym $mod+q exec alacritty
 bindsym $mod+b exec brave
-bindsym $mod+t exec ~/.config/sway/maximize.sh
-
+bindsym PRINT exec grimshot copy anything
 
 # kill focused window
+
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
@@ -65,7 +66,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+v floating toggle
+bindsym $mod+Shift+v sticky toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -81,6 +83,7 @@ bindsym $mod+a focus parent
 # (This should work for both acpilight or xbacklight.)
 bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 bindsym XF86MonBrightnessDown exec brightnessctl s 5%-
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl s 1%
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -183,5 +186,10 @@ popup_during_fullscreen smart
 gaps outer 10
 gaps inner 10
 
-exec_always --no-startup-id dunst
+exec_always --no-startup-id killall swaybg && swaybg --image ~/.config/sway/wallpaper.png --output *
+exec_always {
+  pkill kanshi
+  kanshi &
+}
 exec_always --no-startup-id ~/.config/sway/waybar.sh
+exec --no-startup-id systemctl --user start hyprpolkitagent

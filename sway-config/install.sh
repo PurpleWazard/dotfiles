@@ -1,7 +1,33 @@
 #!/bin/bash
 
-apps="stow rofi-wayland waybar qt5-wayland qt6-wayland nwg-look nwg-displays wl-clipboard grim slurp brightnessctl dunst kanshi"
-configapps=(rofi sway waybar dunst kanshi)
+
+apps="
+      swaybg
+      waybar
+      kanshi
+      mako
+      rofi-wayland
+      hyprpolkitagent
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal
+
+      stow
+      ttf-hack-nerd
+      nwg-look
+      nwg-displays
+      wl-clipboard
+      grim
+      slurp
+      grimshot
+      brightnessctl
+      "
+
+aurapps="
+      grimshot
+      swayfx-i3-style-fullscreen-2-git
+      "
+
+configapps=(sway waybar kanshi)
 
 if [[ "$1" == "-R" ]]; then
 
@@ -11,10 +37,9 @@ if [[ "$1" == "-R" ]]; then
     sudo pacman -Rnsc ${apps}
 fi
 
-
-
 sudo pacman -S ${apps}
+yay -S --sudoloop ${aurapps}
 
-for app in "${configapps[@]}"; do
+for app in $configapps; do
     stow ${app} -t ~/
 done

@@ -1,4 +1,0 @@
-profile {
-
-  output "LG Display 0x0521 Unknown" mode 1920x1080 @60.020Hz position 0,0
-}
