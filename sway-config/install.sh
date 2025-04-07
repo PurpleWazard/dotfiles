@@ -37,10 +37,10 @@ if [[ "$1" == "-R" ]]; then
 
 else
 
-  yay -S --sudoloop ${aurapps}
   sudo pacman -S ${apps}
+  yay -S --sudoloop ${aurapps}
   
-  for app in $configapps; do
+  for app in "${configapps[@]}"; do
       stow ${app} -t ~/
   done
 fi
