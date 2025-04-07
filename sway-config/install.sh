@@ -18,12 +18,11 @@ apps="
       wl-clipboard
       grim
       slurp
-      grimshot
       brightnessctl
       "
 
 aurapps="
-      grimshot
+      grimshot-bin-sway
       swayfx-i3-style-fullscreen-2-git
       "
 
@@ -34,12 +33,14 @@ if [[ "$1" == "-R" ]]; then
     for app in "${configapps[@]}"; do
         stow -D ${app} -t ~/
     done
-    sudo pacman -Rnsc ${apps}
+    sudo pacman -Rnsc ${apps} ${aurapps}
+
+else
+
+  yay -S --sudoloop ${aurapps}
+  sudo pacman -S ${apps}
+  
+  for app in $configapps; do
+      stow ${app} -t ~/
+  done
 fi
-
-sudo pacman -S ${apps}
-yay -S --sudoloop ${aurapps}
-
-for app in $configapps; do
-    stow ${app} -t ~/
-done

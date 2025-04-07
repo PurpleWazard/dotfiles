@@ -186,10 +186,12 @@ popup_during_fullscreen smart
 gaps outer 10
 gaps inner 10
 
-exec_always --no-startup-id killall swaybg && swaybg --image ~/.config/sway/wallpaper.png --output *
+exec_always --no-startup-id swaybg --image ~/.config/sway/wallpaper.png --output "*"
 exec_always {
   pkill kanshi
   kanshi &
 }
 exec_always --no-startup-id ~/.config/sway/waybar.sh
-exec --no-startup-id systemctl --user start hyprpolkitagent
+exec mako
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
