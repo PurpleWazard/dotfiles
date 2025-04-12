@@ -9,6 +9,7 @@ apps="
     nwg-look 
     nwg-displays
     wl-clipboard 
+    ttf-hack-nerd
     grim 
     slurp
     brightnessctl

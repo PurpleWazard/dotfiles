@@ -167,6 +167,14 @@ bindsym $mod+Shift+e exec swaymsg exit
 
 # bindsym $mod+r mode "resize"
 
+for_window [class="REAPER"] floating enable
+
+
+
+# pop-up windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="About"] floating enable
+
 
 
 
