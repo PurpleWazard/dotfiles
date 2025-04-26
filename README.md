@@ -1,6 +1,66 @@
 # Dotfile for the tools i use.
 
-my hunt for my tiling wm.
+## Daily
+arch linux
+
+hyprland
+
+alacritty
+
+neovim
+
+waybar
+
+kanshi
+
+wofi
+
+## GameDev 
+
+Godot
+
+
+## Music Production
+
+bitwig and reaper
+
+yabridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# rant
 
 here is the list of wms ive tried over the past few years.
 
