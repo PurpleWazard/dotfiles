@@ -1,0 +1,11 @@
+profile docked {
+  output eDP-1 disable
+  output 'Microstep MSI AG321CQR DB4H071901248' enable {
+    mode 2560x1440@144.00Hz
+    adaptive_sync on
+    scale 1
+    }
+}
+profile undocked {
+  output eDP-1 enable
+}
