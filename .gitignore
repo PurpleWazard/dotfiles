@@ -1,3 +1,4 @@
-**.stfolder
+.stfolder
+.stignore
 **monitors.conf
 hyprland-config/hypr/.config/hypr/system.conf
