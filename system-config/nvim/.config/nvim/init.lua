@@ -1,4 +1,3 @@
-print("sup")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -83,6 +82,7 @@ vim.keymap.set("n", "<space>x", ":.lua<CR>")
 vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 
+vim.keymap.set("n", "<leader>ff", function() vim.lsp.buf.format() end)
 -- Insert move keymaps
 
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Insert mode smash esc" })

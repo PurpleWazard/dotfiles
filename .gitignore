@@ -2,4 +2,4 @@
 .stignore
 **monitors.conf
 hyprland-config/hypr/.config/hypr/system.conf
-**lazy-lock.json
+system-config/nvim/.config/nvim/lazy-lock.json
