@@ -25,6 +25,5 @@ return {
     vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "Find Help pages for Neovim" })
     vim.keymap.set("n", "<leader>fd", require("telescope.builtin").find_files, { desc = "Find files in the Dir" })
     vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Find by Grep" })
-    vim.keymap.set("n", "<leader>h", require("telescope.builtin").keymaps, { desc = "Find Keymaps" })
   end
 }

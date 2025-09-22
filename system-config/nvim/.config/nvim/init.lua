@@ -1,3 +1,4 @@
+print("sup")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
