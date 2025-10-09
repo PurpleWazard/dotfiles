@@ -106,9 +106,9 @@ require("lazy").setup("plugins")
 
 -- Enable neovim to be the external editor for Godot, if the cwd has a project.godot file
 -- if vim.fn.getcwd() .. "/project.godot" then
--- vim.keymap.set("n", "<leader>dG", function()
---     if "tmp/godot.pipe" then
---         print("attaching to godot server")
---         vim.fn.serverstart("/tmp/godot.pipe")
---     end
--- end)
+vim.keymap.set("n", "<leader>dG", function()
+    if "tmp/godot.pipe" then
+        print("attaching to godot server")
+        vim.fn.serverstart("/tmp/godot.pipe")
+    end
+end)

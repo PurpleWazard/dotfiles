@@ -8,4 +8,7 @@ return {
     ensure_installed = { "clangd" },
     automatic_enable = true
   },
+  config = function()
+    vim.lsp.enable('gdscript')
+  end
 }
