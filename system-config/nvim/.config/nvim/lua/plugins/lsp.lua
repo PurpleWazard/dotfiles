@@ -10,5 +10,6 @@ return {
   },
   config = function()
     vim.lsp.enable('gdscript')
+    vim.lsp.enable('clangd')
   end
 }
