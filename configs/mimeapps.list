@@ -1,0 +1,24 @@
+[Default Applications]
+x-scheme-handler/discord=vesktop.desktop
+video/mp4=vlc.desktop
+video/x-matroska=vlc.desktop
+video/x-msvideo=vlc.desktop
+video/webm=vlc.desktop
+video/x-flv=vlc.desktop
+video/x-ogm+vorbis=vlc.desktop
+video/quicktime=vlc.desktop
+video/x-m4v=vlc.desktop
+video/x-ms-wmv=vlc.desktop
+text/plain=neovim.desktop
+text/x-log=neovim.desktop
+text/x-shellscript=neovim.desktop
+text/x-python=neovim.desktop
+text/x-csrc=neovim.desktop
+text/x-c++src=neovim.desktop
+text/markdown=neovim.desktop
+text/x-config=neovim.desktop
+inode/directory=yazi.desktop
+application/x-shellscript=Alacritty.desktop
+
+[Added Associations]
+application/x-shellscript=Alacritty.desktop;
