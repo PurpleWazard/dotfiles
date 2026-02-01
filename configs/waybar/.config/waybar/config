@@ -67,7 +67,7 @@
 	},
 
 	"temperature#gpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp2_input",
 		"critical-threshold": 90,
 		"interval": 5,
 		"format": "󱎓 {icon} {temperatureC}°",
