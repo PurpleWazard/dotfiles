@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.opt.swapfile = false
 vim.g.have_nerd_font = true
 
 --  For more options, you can see `:help option-list`
@@ -87,6 +88,18 @@ vim.keymap.set("n", "<leader>ff", function() vim.lsp.buf.format() end)
 
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Insert mode smash esc" })
 
+-- Auto-save when entering normal mode
+vim.api.nvim_create_autocmd("InsertLeave", {
+    pattern = "*",
+    command = "silent! write",
+})
+
+-- Auto-save when switching to a different window
+vim.api.nvim_create_autocmd("WinLeave", {
+    pattern = "*",
+    command = "silent! write",
+})
+
 -- boot strap lazy nvim
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -114,6 +127,6 @@ godot = function()
   end
 end
 
-godot()
+-- godot()
 
 vim.keymap.set("n", "<leader>dG", godot )

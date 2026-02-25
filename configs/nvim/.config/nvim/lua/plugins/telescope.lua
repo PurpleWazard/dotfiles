@@ -25,5 +25,19 @@ return {
     vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags, { desc = "Find Help pages for Neovim" })
     vim.keymap.set("n", "<leader>fd", require("telescope.builtin").find_files, { desc = "Find files in the Dir" })
     vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc = "Find by Grep" })
+
+    -- Make Telescope use the current file's directory
+    vim.api.nvim_create_user_command('Telescope', function()
+      require('telescope.builtin').find_files({
+        cwd = vim.fn.expand('%:p:h')
+      })
+    end, { nargs = 0 })
+
+    -- For live grep as well
+    vim.api.nvim_create_user_command('TelescopeLiveGrep', function()
+      require('telescope.builtin').live_grep({
+        cwd = vim.fn.expand('%:p:h')
+      })
+    end, { nargs = 0 })
   end
 }
