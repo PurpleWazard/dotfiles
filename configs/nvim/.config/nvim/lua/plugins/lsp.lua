@@ -11,6 +11,8 @@ return {
   config = function()
     vim.lsp.enable('gdscript')
     vim.lsp.enable('clangd')
-    vim.lsp.enable('pyright')
+    vim.lsp.enable('cssls')
+    vim.lsp.enable('html')
+    vim.lsp.enable('lua_ls')
   end
 }
