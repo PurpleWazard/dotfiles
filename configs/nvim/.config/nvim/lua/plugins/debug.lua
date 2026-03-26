@@ -1,4 +1,4 @@
-return {
+eturn {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -6,6 +6,12 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
+      {
+        'Joakker/lua-json5',
+        build = './install.sh',
+      },
+      "jedrzejboczar/nvim-dap-cortex-debug",
+
     },
     config = function()
       local dap = require "dap"
@@ -40,32 +46,65 @@ return {
       }
 
 
-      local dap = require("dap")
       dap.adapters.gdb = {
         type = "executable",
         command = "gdb",
         args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
       }
+      --       dap.adapters["cortex-debug"] = {
+      --         type = "executable",
+      --         command = "cortex-debug",
+      -- }
+      -- require('dap.launch.json').json_decode = require('json5').parse
+      require('dap.ext.vscode').json_decode = require('json5').parse
+      require("dap.ext.vscode").load_launchjs(nil, {
+        ["cortex-debug"] = { "c", "cpp" },
+      })
 
 
-      local dap = require("dap")
-      dap.configurations.c = {
-        {
-          name = "Launch",
-          type = "gdb",
-          request = "launch",
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end,
-          args = {}, -- provide arguments if needed
-          cwd = "${workspaceFolder}",
-          stopAtBeginningOfMainSubprogram = false,
+      require('dap-cortex-debug').setup {
+        debug = false, -- log debug messages
+        -- path to cortex-debug extension, supports vim.fn.glob
+        -- by default tries to guess: mason.nvim or VSCode extensions
+        extension_path = nil,
+        lib_extension = nil, -- shared libraries extension, tries auto-detecting, e.g. 'so' on unix
+        node_path = 'node',  -- path to node.js executable
+        dapui_rtt = true,    -- register nvim-dap-ui RTT element
+        -- make :DapLoadLaunchJSON register cortex-debug for C/C++, set false to disable
+        dap_vscode_filetypes = { 'c', 'cpp' },
+        rtt = {
+          buftype = 'Terminal', -- 'Terminal' or 'BufTerminal' for terminal buffer vs normal buffer
         },
       }
 
 
 
+      local dap_cortex_debug = require('dap-cortex-debug')
+      require('dap').configurations.c = {
+        dap_cortex_debug.openocd_config {
+          name = 'Example debugging with OpenOCD',
+          cwd = '${workspaceFolder}',
+          executable = '${workspaceFolder}/build/app',
+          configFiles = { '${workspaceFolder}/build/openocd/connect.cfg' },
+          gdbTarget = 'localhost:3333',
+          rttConfig = dap_cortex_debug.rtt_config(0),
+          showDevDebugOutput = false,
+        },
+      }
 
+      --        dap.configurations.c = {
+      --       {
+      --         name = "Launch GDB",
+      --         type = "gdb",
+      --         request = "launch",
+      --         program = function()
+      --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      --         end,
+      --         args = {}, -- provide arguments if needed
+      --         cwd = "${workspaceFolder}",
+      --         stopAtBeginningOfMainSubprogram = false,
+      --       },
+      --     }
     end,
   },
 }

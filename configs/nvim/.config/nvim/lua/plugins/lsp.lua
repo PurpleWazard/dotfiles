@@ -13,6 +13,7 @@ return {
     vim.lsp.enable('clangd')
     vim.lsp.enable('cssls')
     vim.lsp.enable('html')
+    vim.lsp.enable('pyright')
     vim.lsp.enable('lua_ls')
   end
 }
