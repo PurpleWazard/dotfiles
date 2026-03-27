@@ -1,4 +1,4 @@
-eturn {
+return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -17,9 +17,12 @@ eturn {
       local dap = require "dap"
       local ui = require "dapui"
 
+      dap.set_log_level('TRACE')
+
       require("dapui").setup()
 
       vim.keymap.set("n", "<space>db", dap.toggle_breakpoint)
+      vim.keymap.set("n", "<space>dd", require("dapui").toggle)
       vim.keymap.set("n", "<space>dc", dap.continue)
       vim.keymap.set('n', '<leader>do', dap.step_over)
       vim.keymap.set('n', '<leader>di', dap.step_into)
@@ -45,22 +48,31 @@ eturn {
         port = 6006,
       }
 
-
       dap.adapters.gdb = {
         type = "executable",
         command = "gdb",
         args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
       }
-      --       dap.adapters["cortex-debug"] = {
-      --         type = "executable",
-      --         command = "cortex-debug",
-      -- }
-      -- require('dap.launch.json').json_decode = require('json5').parse
-      require('dap.ext.vscode').json_decode = require('json5').parse
-      require("dap.ext.vscode").load_launchjs(nil, {
-        ["cortex-debug"] = { "c", "cpp" },
-      })
 
+      dap.configurations.c = {
+        {
+          name = "Launch GDB",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          args = {}, -- provide arguments if needed
+          cwd = "${workspaceFolder}",
+          stopAtBeginningOfMainSubprogram = false,
+        },
+      }
+
+
+      --------------------------------
+
+      require('dap.ext.vscode').json_decode = require 'json5'.parse
+      require('dap.ext.vscode').load_launchjs(nil, { ["cortex-debug"] = { 'c', 'cpp' } })
 
       require('dap-cortex-debug').setup {
         debug = false, -- log debug messages
@@ -76,35 +88,6 @@ eturn {
           buftype = 'Terminal', -- 'Terminal' or 'BufTerminal' for terminal buffer vs normal buffer
         },
       }
-
-
-
-      local dap_cortex_debug = require('dap-cortex-debug')
-      require('dap').configurations.c = {
-        dap_cortex_debug.openocd_config {
-          name = 'Example debugging with OpenOCD',
-          cwd = '${workspaceFolder}',
-          executable = '${workspaceFolder}/build/app',
-          configFiles = { '${workspaceFolder}/build/openocd/connect.cfg' },
-          gdbTarget = 'localhost:3333',
-          rttConfig = dap_cortex_debug.rtt_config(0),
-          showDevDebugOutput = false,
-        },
-      }
-
-      --        dap.configurations.c = {
-      --       {
-      --         name = "Launch GDB",
-      --         type = "gdb",
-      --         request = "launch",
-      --         program = function()
-      --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-      --         end,
-      --         args = {}, -- provide arguments if needed
-      --         cwd = "${workspaceFolder}",
-      --         stopAtBeginningOfMainSubprogram = false,
-      --       },
-      --     }
     end,
   },
 }
