@@ -19,6 +19,8 @@ text/markdown=neovim.desktop
 text/x-config=neovim.desktop
 inode/directory=yazi.desktop
 application/x-shellscript=Alacritty.desktop
+x-scheme-handler/http=librewolf.desktop
+x-scheme-handler/https=librewolf.desktop
 
 [Added Associations]
 application/x-shellscript=Alacritty.desktop;

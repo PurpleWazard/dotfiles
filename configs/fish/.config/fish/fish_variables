@@ -3,4 +3,4 @@
 SETUVAR --export PYENV_ROOT:/home/wazard/\x2epyenv
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:
-SETUVAR fish_user_paths:/home/wazard/\x2eplatformio/penv/bin/
+SETUVAR --export fish_user_paths:/home/wazard/\x2elocal/bin\x1e/home/wazard/\x2eplatformio/penv/bin/
