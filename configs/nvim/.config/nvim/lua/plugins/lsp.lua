@@ -15,5 +15,6 @@ return {
     vim.lsp.enable('html')
     vim.lsp.enable('pyright')
     vim.lsp.enable('lua_ls')
+    vim.lsp.enable('csharp_ls')
   end
 }
