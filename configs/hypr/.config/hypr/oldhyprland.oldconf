@@ -41,7 +41,7 @@ env = XDG_UTILS,dolphin
 $terminal = alacritty
 $fileManager = dolphin
 $menu = wofi --show drun
-$web = librewolf
+$web = brave
 
 
 #################
@@ -190,7 +190,6 @@ animations {
 
 # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
 dwindle {
-    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = true # You probably want this
 }
 
@@ -236,8 +235,9 @@ device {
 
 device {
 
-name = synaptics-tm3276-022
-sensitivity = -0.2
+name = synaptics-tm3625-010
+accel_profile = flat
+sensitivity = 0.0
 
 
 }

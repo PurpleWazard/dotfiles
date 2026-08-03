@@ -25,8 +25,7 @@ read -p "Install hyprland and GUIs? (y/N): " hypr
 if [[ "$hypr" =~ ^[Yy]$ ]]; then
     sudo pacman -S discord blueman pavucontrol qpwgraph wofi network-manager-applet waybar wl-clipboard grim slurp brightnessctl hypridle hyprland hyprpaper hyprlock hyprpolkitagent xdg-desktop-portal-hyprland
     stow -d configs -t ~ hypr
-    stow -d configs -t ~ waybar
-    stow -d configs -t ~ kanshi
+    stow -d configs -t ~ noctalia
 fi
 
 read -p "Install CUPS and GUI? (y/N): " cups
