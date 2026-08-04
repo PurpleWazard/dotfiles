@@ -30,7 +30,6 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "alacritty"
 local fileManager = "dolphin"
-local menu        = "hyprlauncher"
 local browser     = "librewolf"
 
 
@@ -92,8 +91,9 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            -- active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
+            active_border = { colors = {"rgba(83A598FF)", "rgba(D3869BFF)", "rgba(B8BB26FF)", "rgba(8EC07CFF)"}, angle = 45},
+            inactive_border = "rgba(595959aa)"
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -261,7 +261,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+-- hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
@@ -320,7 +320,7 @@ local ipc = "noctalia msg "
 
 -- Core binds
 hl.bind(mainMod .. "+R", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
-hl.bind(mainMod .. "+S", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
+hl.bind(mainMod .. "+period", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
 hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
 
