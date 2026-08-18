@@ -17,7 +17,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
     output   = "",
-    mode     = "preferred",
+    mode     = "highrr",
     position = "auto",
     scale    = "1",
 })
@@ -265,7 +265,9 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen("fullscreen", "toggle", true))
+-- hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen("maximized", "toggle", false))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen_state( {internal = -1, client = 2, "toggle"} ))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen_state( {internal = 2, client = -1, "toggle"} ))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
