@@ -9,7 +9,6 @@ return {
     automatic_enable = true
   },
   config = function()
-    vim.lsp.enable('gdscript')
     vim.lsp.enable('clangd')
     vim.lsp.enable('cssls')
     vim.lsp.enable('html')

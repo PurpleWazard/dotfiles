@@ -3,3 +3,4 @@
 **monitors.conf
 hyprland-config/hypr/.config/hypr/system.conf
 system-config/nvim/.config/nvim/lazy-lock.json
+configs/nvim/.config/nvim/lazy-lock.json
