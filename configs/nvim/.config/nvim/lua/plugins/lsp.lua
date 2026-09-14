@@ -10,10 +10,13 @@ return {
   },
   config = function()
     vim.lsp.enable('clangd')
-    vim.lsp.enable('cssls')
-    vim.lsp.enable('html')
+    -- vim.lsp.enable('cssls')
+    -- vim.lsp.enable('html')
     vim.lsp.enable('pyright')
     vim.lsp.enable('lua_ls')
-    vim.lsp.enable('csharp_ls')
+    -- vim.lsp.enable('csharp_ls')
+
+    vim.lsp.enable("gdscript")
+    -- vim.lsp.enable("gdshader_lsp")
   end
 }
