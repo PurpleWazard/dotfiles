@@ -22,7 +22,7 @@ hl.monitor({
     scale    = "1",
 })
 
-
+require("monitors")
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
