@@ -13,7 +13,13 @@
 ------------------
 ---- MONITORS ----
 ------------------
-
+require("monitors")
+hl.monitor({
+    output = "desc:Microstep MSI AG321CQR DB4H071901248",
+    mode = "2560x1440@165",
+    position = "0x0",
+    scale = 1,
+})
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
   output   = "",
@@ -21,8 +27,18 @@ hl.monitor({
   position = "auto",
   scale    = "1",
 })
+hl.config({
+    render = {
+        direct_scanout = true,
+    },
+    misc = {
+        vrr = 2,
+    },
+    general = {
+        allow_tearing = true,
+    }
+})
 
-require("monitors")
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -386,6 +402,14 @@ hl.window_rule({
   },
 
   no_focus = true,
+})
+
+
+
+
+hl.window_rule({
+    match = { class = ".*[Mm]inecraft.*" },
+    immediate = true,       -- Allows the window to tear frames instantly past 165Hz
 })
 
 -- Layer rules also return a handle.
